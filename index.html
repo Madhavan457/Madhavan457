@@ -555,23 +555,5 @@
         </div>
     </div>
 </div>
-      <script>
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        portfolioItems.forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = item.getBoundingClientRect();
-                const xAxis = ((e.pageX - left) / width - 0.5) * 30;
-                const yAxis = ((e.pageY - top) / height - 0.5) * -30;
-                
-                item.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'rotateY(0deg) rotateX(0deg)';
-            });
-        });
-    </script>
-
 </body>
 </html>
