@@ -340,6 +340,94 @@
     margin: 0 auto;
     padding: 0 20px;
 }
+     body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .portfolio-section {
+            display: flex;
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            width: 250px;
+            height: 350px;
+            background: #1e1e1e;
+            perspective: 1000px;
+            border-radius: 15px;
+            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: rotateY(15deg) rotateX(10deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-item-content {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-item-content {
+            transform: rotateY(20deg) rotateX(15deg);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 60%;
+            background-color: #333;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-info {
+            padding: 15px;
+            height: 40%;
+        }
+
+        .portfolio-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-description {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Hover Animation */
+        .portfolio-item:hover .portfolio-title {
+            color: #00d8ff;
+        }
+        .portfolio-item:hover .portfolio-description {
+            color: #fff;
+        }
+
+        /* Unique Background Images for each portfolio */
+        #portfolio-1 .portfolio-image {
+            background-image: url('https://source.unsplash.com/800x600/?technology');
+        }
+
+        #portfolio-2 .portfolio-image {
+            background-image: url('https://source.unsplash.com/800x600/?futuristic');
+        }
+
+        #portfolio-3 .portfolio-image {
+            background-image: url('https://source.unsplash.com/800x600/?webdevelopment');
+        }
+    
     </style>
 </head>
 <body style="margin: 0; font-family: 'Arial', sans-serif; background-color: #0c0c0c; color: #fff;">
@@ -416,6 +504,41 @@
             </div>
         </div>
     </div>
+     <div class="portfolio-section">
+        <!-- Portfolio 1 -->
+        <div class="portfolio-item" id="portfolio-1">
+            <div class="portfolio-item-content">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <h2 class="portfolio-title">Project 1</h2>
+                    <p class="portfolio-description">A futuristic tech project showcasing innovative ideas and design.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio 2 -->
+        <div class="portfolio-item" id="portfolio-2">
+            <div class="portfolio-item-content">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <h2 class="portfolio-title">Project 2</h2>
+                    <p class="portfolio-description">An experimental web development project featuring cutting-edge technology.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio 3 -->
+        <div class="portfolio-item" id="portfolio-3">
+            <div class="portfolio-item-content">
+                <div class="portfolio-image"></div>
+                <div class="portfolio-info">
+                    <h2 class="portfolio-title">Project 3</h2>
+                    <p class="portfolio-description">A modern web app project that focuses on UX/UI design and functionality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
      <!-- Footer Section -->
   <div class="footer">
     <div class="footer-content">
@@ -432,5 +555,23 @@
         </div>
     </div>
 </div>
+      <script>
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = item.getBoundingClientRect();
+                const xAxis = ((e.pageX - left) / width - 0.5) * 30;
+                const yAxis = ((e.pageY - top) / height - 0.5) * -30;
+                
+                item.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        });
+    </script>
+
 </body>
 </html>
